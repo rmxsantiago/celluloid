@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 'android-P'
+    defaultConfig {
+        applicationId "ie.rmxsantiago.celluloid"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildToolsVersion '28.0.0 rc2'
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    /** MISCELLANEOUS **/
+    //implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+
+    /** UI **/
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.0.0-alpha1'
+
+    /** TESTING **/
+    // JUnit
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha2'
+
+    // Mockito
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+
+    /** NETWORKING **/
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:+'
+
+    /** PERSISTENCE **/
+    def room_version = "2.0.0-alpha1"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // optional - RxJava support for Room
+    //implementation "androidx.room:room-rxjava2:$room_version"
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    //implementation "androidx.room:room-guava:$room_version"
+
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    /** LiveData + ViewModel **/
+    def lifecycle_version = "2.0.0-alpha1"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+    // optional - Test helpers for LiveData
+    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+
+    /** Dependency Injection **/
+    // Dagger 2
+    def dagger_version = "2.15"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version" // if you use the support libraries
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+}
