@@ -26,7 +26,7 @@ public abstract class MoviesDatabase extends RoomDatabase {
     /**
      * Sole constructor.
      */
-    private MoviesDatabase() {}
+    public MoviesDatabase() {}
 
     public static MoviesDatabase getDatabase(final Context context){
         if (INSTANCE == null) {
@@ -65,7 +65,7 @@ public abstract class MoviesDatabase extends RoomDatabase {
         protected Void doInBackground(final Void... params) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            mDao.deleteGenres();
+            mDao.deleteAllGenres();
             return null;
         }
     }

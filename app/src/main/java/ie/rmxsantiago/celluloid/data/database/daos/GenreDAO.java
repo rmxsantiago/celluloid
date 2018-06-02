@@ -21,6 +21,9 @@ public interface GenreDAO {
     @Query("select * from genre where gnre_name like :name")
     List<Genre> findGenreByName(String name);
 
+    @Query("select * from genre where gnre_name = :name")
+    Genre findGenreByExactName(String name);
+
     @Query("select * from genre")
     LiveData<List<Genre>> returnAllGenders();
 
@@ -32,7 +35,7 @@ public interface GenreDAO {
     void insertGenres(List<Genre> genres);
 
     @Query("delete from genre")
-    void deleteGenres();
+    void deleteAllGenres();
 
     @Update
     void updateGenre(Genre genre);

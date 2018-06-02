@@ -43,15 +43,15 @@ dependencies {
     /** TESTING **/
     // JUnit
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha2'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
 
     // Mockito
-    testImplementation 'org.mockito:mockito-core:1.10.19'
+    testImplementation 'org.mockito:mockito-core:2.7.6'
 
     /** NETWORKING **/
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:+'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     /** PERSISTENCE **/
     def room_version = "2.0.0-alpha1"
@@ -76,7 +76,7 @@ dependencies {
 
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
     // optional - Test helpers for LiveData
-    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+    androidTestImplementation "androidx.arch.core:core-testing:$lifecycle_version"
 
     /** Dependency Injection **/
     // Dagger 2
