@@ -1,4 +1,4 @@
-package ie.rmxsantiago.celluloid.Utils;
+package ie.rmxsantiago.celluloid.utils;
 /*
  * Copyright (C) 2017 The Android Open Source Project
  *

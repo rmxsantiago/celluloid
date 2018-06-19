@@ -78,7 +78,6 @@ public class GenreRepository {
 
 
     private static class InsertGenreAsyncTask extends AsyncTask<Void, Void, Void> {
-
         private final GenreDAO genreDAO;
         private final List<Genre> genres;
 

@@ -6,15 +6,21 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import ie.rmxsantiago.celluloid.R;
 import ie.rmxsantiago.celluloid.data.database.model.Genre;
+import ie.rmxsantiago.celluloid.presentation.adapter.GenreListAdapter;
 import ie.rmxsantiago.celluloid.presentation.viewmodel.GenreViewModel;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * @author Rafael Santiago (@rmxsantiago)
@@ -24,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private GenreViewModel genreViewModel;
 
-    private TextView textView;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textView = findViewById(R.id.txtView);
+        recyclerView = findViewById(R.id.recyclerListOfGenre);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
 
 
-        FloatingActionButton fab = (com.google.android.material.floatingactionbutton.FloatingActionButton) findViewById(R.id.fab);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,13 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private void setUI() {
         genreViewModel.getGenres().observe(this, list -> {
             // Update UI
-            String text = "";
-            for (Genre genre: list) {
-                text += genre.getName() + "\n";
-            }
-
-            Log.d(TAG, text);
-            textView.setText(text);
+            recyclerView.setAdapter(new GenreListAdapter(list));
         });
     }
 

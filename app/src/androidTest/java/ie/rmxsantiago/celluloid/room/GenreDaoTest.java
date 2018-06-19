@@ -1,7 +1,6 @@
-package ie.rmxsantiago.celluloid;
+package ie.rmxsantiago.celluloid.room;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -14,7 +13,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.room.Room;
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
-import ie.rmxsantiago.celluloid.Utils.LiveDataTestUtil;
+import ie.rmxsantiago.celluloid.utils.LiveDataTestUtil;
 import ie.rmxsantiago.celluloid.data.database.MoviesDatabase;
 import ie.rmxsantiago.celluloid.data.database.daos.GenreDAO;
 import ie.rmxsantiago.celluloid.data.database.model.Genre;
