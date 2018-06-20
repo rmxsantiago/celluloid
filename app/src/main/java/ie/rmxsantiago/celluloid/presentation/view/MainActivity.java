@@ -13,6 +13,7 @@ import ie.rmxsantiago.celluloid.data.database.model.Genre;
 import ie.rmxsantiago.celluloid.presentation.adapter.GenreListAdapter;
 import ie.rmxsantiago.celluloid.presentation.viewmodel.GenreViewModel;
 
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,13 +29,18 @@ import java.util.ArrayList;
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final boolean DEVELOPER_MODE = true;
     private GenreViewModel genreViewModel;
+
 
     private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        settingStrictMode();
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,6 +62,23 @@ public class MainActivity extends AppCompatActivity {
 
         setViewModels();
         setUI();
+    }
+
+    private void settingStrictMode() {
+        if (DEVELOPER_MODE) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()   // or .detectAll() for all detectable problems
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build());
+        }
     }
 
     private void setUI() {

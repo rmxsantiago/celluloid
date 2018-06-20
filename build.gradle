@@ -32,6 +32,7 @@ ext {
     /** UI **/
     material_version = "1.0.0-alpha3"
     constraintlayout_version = "1.1.2"
+    cardview_version = "1.0.0-alpha1"
     /** TESTING **/
     junit_version = "4.12"
     testrunner_version = "1.1.0-alpha3"
