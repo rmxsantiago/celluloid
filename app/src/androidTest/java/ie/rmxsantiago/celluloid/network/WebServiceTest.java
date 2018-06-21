@@ -6,12 +6,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import androidx.test.runner.AndroidJUnit4;
 import ie.rmxsantiago.celluloid.data.remote.TmdbRestService;
 import ie.rmxsantiago.celluloid.data.remote.pojos.GenreResponse;
 import ie.rmxsantiago.celluloid.data.remote.pojos.MoviesByGenreResponse;
 import ie.rmxsantiago.celluloid.utils.WebServiceHelper;
+import okhttp3.ConnectionSpec;
 import okhttp3.HttpUrl;
 import okhttp3.mockwebserver.MockWebServer;
 import retrofit2.Response;
@@ -39,6 +41,8 @@ public class WebServiceTest {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+
 
         tmdbRestService = retrofit.create(TmdbRestService.class);
     }
