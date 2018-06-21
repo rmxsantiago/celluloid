@@ -5,46 +5,30 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Movie {
-
     @SerializedName("adult")
     private boolean isAdultMovie;
     @SerializedName("backdrop_path")
     private String backdrop_path;
-    @SerializedName("belons_to_collection")
-    private Collection belongsToCollection;
-    private int budget;
-    private List<Genre> genres;
-    private String homepage;
+    @SerializedName("genre_ids")
+    private List<Integer> listOfGenreIds;
+    @SerializedName("id")
     private int id;
-    @SerializedName("imdb_id")
-    private String imdbId;
     @SerializedName("original_language")
     private String originalLanguage;
     @SerializedName("original_title")
     private String originalTitle;
     private String overview;
-    private float popularity;
-    @SerializedName("poster_path")
-    private String posterPath;
-    @SerializedName("production_companies")
-    private List<Company> productionCompanies;
-    @SerializedName("production_countries")
-    private List<Country> productionCountries;
     @SerializedName("release_date")
     private String releaseDate;
-    private int revenue;
-    private int runtime;
-    @SerializedName("spoken_languages")
-    private List<Language> spokenLanguages;
-    private String status;
-    private String tagline;
+    @SerializedName("poster_path")
+    private String posterPath;
+    private float popularity;
     private String title;
     private String video;
     @SerializedName("vote_average")
     private float voteAverage;
     @SerializedName("vote_count")
     private int voteCount;
-
 
     //region Getters/Setters
 
@@ -64,36 +48,12 @@ public class Movie {
         this.backdrop_path = backdrop_path;
     }
 
-    public Collection getBelongsToCollection() {
-        return belongsToCollection;
+    public List<Integer> getListOfGenreIds() {
+        return listOfGenreIds;
     }
 
-    public void setBelongsToCollection(Collection belongsToCollection) {
-        this.belongsToCollection = belongsToCollection;
-    }
-
-    public int getBudget() {
-        return budget;
-    }
-
-    public void setBudget(int budget) {
-        this.budget = budget;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
-
-    public String getHomepage() {
-        return homepage;
-    }
-
-    public void setHomepage(String homepage) {
-        this.homepage = homepage;
+    public void setListOfGenreIds(List<Integer> listOfGenreIds) {
+        this.listOfGenreIds = listOfGenreIds;
     }
 
     public int getId() {
@@ -102,14 +62,6 @@ public class Movie {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getImdbId() {
-        return imdbId;
-    }
-
-    public void setImdbId(String imdbId) {
-        this.imdbId = imdbId;
     }
 
     public String getOriginalLanguage() {
@@ -136,12 +88,12 @@ public class Movie {
         this.overview = overview;
     }
 
-    public float getPopularity() {
-        return popularity;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setPopularity(float popularity) {
-        this.popularity = popularity;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getPosterPath() {
@@ -152,68 +104,12 @@ public class Movie {
         this.posterPath = posterPath;
     }
 
-    public List<Company> getProductionCompanies() {
-        return productionCompanies;
+    public float getPopularity() {
+        return popularity;
     }
 
-    public void setProductionCompanies(List<Company> productionCompanies) {
-        this.productionCompanies = productionCompanies;
-    }
-
-    public List<Country> getProductionCountries() {
-        return productionCountries;
-    }
-
-    public void setProductionCountries(List<Country> productionCountries) {
-        this.productionCountries = productionCountries;
-    }
-
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public int getRevenue() {
-        return revenue;
-    }
-
-    public void setRevenue(int revenue) {
-        this.revenue = revenue;
-    }
-
-    public int getRuntime() {
-        return runtime;
-    }
-
-    public void setRuntime(int runtime) {
-        this.runtime = runtime;
-    }
-
-    public List<Language> getSpokenLanguages() {
-        return spokenLanguages;
-    }
-
-    public void setSpokenLanguages(List<Language> spokenLanguages) {
-        this.spokenLanguages = spokenLanguages;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getTagline() {
-        return tagline;
-    }
-
-    public void setTagline(String tagline) {
-        this.tagline = tagline;
+    public void setPopularity(float popularity) {
+        this.popularity = popularity;
     }
 
     public String getTitle() {
@@ -248,8 +144,6 @@ public class Movie {
         this.voteCount = voteCount;
     }
 
-
     //endregion
-
 
 }

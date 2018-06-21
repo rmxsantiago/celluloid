@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import ie.rmxsantiago.celluloid.data.database.model.Movie;
+import ie.rmxsantiago.celluloid.data.database.model.MovieDetails;
 
 public class MoviesByGenreResponse {
     private int id;
