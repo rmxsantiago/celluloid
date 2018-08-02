@@ -1,0 +1,64 @@
+
+ext {
+    androidCompileSdkVersion = 28
+    androidMinSdkVersion = 19
+    androidTargetSdkVersion = 28
+
+    /** MISCELLANEOUS **/
+    appcompat_version = "1.0.0-alpha3"
+    /** UI **/
+    material_version = "1.0.0-beta01"
+    constraintlayout_version = "1.1.2"
+    cardview_version = "1.0.0-alpha1"
+    /** TESTING **/
+    junit_version = "4.12"
+    testrunner_version = "1.1.0-alpha3"
+    espresso_version = "3.1.0-alpha3"
+    mockito_version = "2.7.6"
+    mockwebserver_version = "3.7.0"
+    /** NETWORKING **/
+    retrofit_version = "2.4.0"
+    glide_version = "4.7.1"
+    /** PERSISTENCE **/
+    room_version = "2.0.0-alpha1"
+    /** LIVEDATA + VIEWMODEL **/
+    lifecycle_version = "2.0.0-beta01"
+    /** DEPENDENCY INJECTION **/
+    dagger_version = "2.15"
+
+
+    domainDependencies = [
+            room: "androidx.room:room-runtime:$room_version",
+            room_compiler: "androidx.room:room-compiler:$room_version",
+            // ViewModel and LiveData
+            lifecycle: "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            lifecycle_compiler: "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+            converter_gson: "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    ]
+
+    domainTestDependencies = [
+            junit: "junit:junit:$junit_version"
+    ]
+
+    dataDependencies = [
+            retrofit: "com.squareup.retrofit2:retrofit:$retrofit_version",
+            converter_gson: "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            lifecycle: "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            lifecycle_compiler: "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+            room_compiler: "androidx.room:room-compiler:$room_version",
+            room: "androidx.room:room-runtime:$room_version",
+            dagger_android:  "com.google.dagger:dagger-android:${rootProject.ext.dagger_version}",
+            dagger_android_support:  "com.google.dagger:dagger-android-support:$dagger_version", // if you use the support libraries
+            dagger_android_processor:  "com.google.dagger:dagger-android-processor:$dagger_version"
+    ]
+
+    dataTestDependencies = [
+            junit: "junit:junit:$junit_version",
+            testrunner: "androidx.test:runner:$testrunner_version",
+            espresso: "androidx.test.espresso:espresso-core:$espresso_version",
+            mockwebserver: "com.squareup.okhttp3:mockwebserver:$mockwebserver_version",
+            room_testing: "androidx.room:room-testing:$room_version",
+            core_testing: "androidx.arch.core:core-testing:$lifecycle_version"
+    ]
+}

@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(path: ':domain')
+
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.converter_gson
+    implementation dataDependencies.dagger_android
+    implementation dataDependencies.dagger_android_support
+    annotationProcessor dataDependencies.dagger_android_processor
+    implementation dataDependencies.room
+    annotationProcessor dataDependencies.room_compiler
+    implementation dataDependencies.lifecycle
+    annotationProcessor dataDependencies.lifecycle_compiler
+
+    implementation dataTestDependencies.junit
+    androidTestImplementation dataTestDependencies.testrunner
+    androidTestImplementation dataTestDependencies.espresso
+    implementation dataTestDependencies.mockwebserver
+    testImplementation dataTestDependencies.room_testing
+    androidTestImplementation dataTestDependencies.core_testing
+
+}
