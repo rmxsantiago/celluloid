@@ -10,8 +10,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import ie.rmxsantiago.data.database.daos.GenreDAO;
-import ie.rmxsantiago.data.database.daos.MovieDAO;
-import ie.rmxsantiago.data.database.daos.MovieGenreDAO;
 import ie.rmxsantiago.domain.model.common.Genre;
 
 /**
@@ -24,8 +22,8 @@ public abstract class MoviesDatabase extends RoomDatabase {
     public static MoviesDatabase INSTANCE;
 
     public abstract GenreDAO getGenreDAO();
-    public abstract MovieDAO getMovieDAO();
-    public abstract MovieGenreDAO getMovieGenreDAO();
+    //public abstract MovieDAO getMovieDAO();
+    //public abstract MovieGenreDAO getMovieGenreDAO();
 
     /**
      * Sole constructor.

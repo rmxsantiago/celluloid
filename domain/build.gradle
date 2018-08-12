@@ -22,6 +22,10 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = globalConfiguration["java_version"]
+        targetCompatibility = globalConfiguration["java_version"]
+    }
 }
 
 dependencies {
@@ -38,4 +42,5 @@ dependencies {
 
 
     implementation dataTestDependencies.junit
+    androidTestImplementation dataTestDependencies.testrunner
 }

@@ -22,9 +22,19 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = globalConfiguration["java_version"]
+        targetCompatibility = globalConfiguration["java_version"]
+    }
 }
 
 dependencies {
     implementation project(path: ':domain')
     implementation project(path: ':data')
+
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    implementation dataTestDependencies.junit
+    //androidTestImplementation dataTestDependencies.testrunner
+
 }

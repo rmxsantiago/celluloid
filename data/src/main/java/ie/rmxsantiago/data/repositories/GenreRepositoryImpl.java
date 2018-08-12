@@ -2,19 +2,20 @@ package ie.rmxsantiago.data.repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import javax.inject.Singleton;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import ie.rmxsantiago.data.database.daos.GenreDAO;
 import ie.rmxsantiago.domain.model.common.Genre;
 import ie.rmxsantiago.domain.model.reponses.GenreResponse;
 import ie.rmxsantiago.domain.repositories.GenreRepository;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -26,27 +27,56 @@ public class GenreRepositoryImpl extends BaseRepository implements GenreReposito
     private static final String TAG = "GenreRepositoryImpl";
 
     private GenreDAO genreDAO;
-    private LiveData<List<Genre>> genres;
+    private LiveData<List<Genre>> genreListLiveData;
+    private final Executor executor;
 
-    public GenreRepositoryImpl(Application application) {
+    private final MediatorLiveData mediator = new MediatorLiveData();
+
+    public GenreRepositoryImpl(Application application, Executor executor) {
         super(application);
 
         genreDAO = db.getGenreDAO();
-        genres = genreDAO.returnAllGenders();
+        this.executor = executor;
+        //genreListLiveData = genreDAO.returnAllGenders();
+
+        /*
+         * Step 1 - This code add the LiveData to a Mediator for listening
+         */
+        mediator.addSource(genreListLiveData, data -> {
+            mediator.removeSource(genreListLiveData);
+            if(shouldFetch(data)){
+                fetchAllGenresFromNetwork(genreListLiveData);
+            }else{
+                mediator.addSource(genreListLiveData, newData -> mediator.setValue(data));
+            }
+        });
+    }
+
+    private boolean shouldFetch(Object data) {
+        return true;
     }
 
     public LiveData<List<Genre>> getMovieGenres() {
-        if(this.isNetworkConnected()) {
-            Log.d(TAG, "isNetworkConnected: " + isNetworkConnected());
-            loadGenres();
-            genres = genreDAO.returnAllGenders();
-        }
+        //Log.d(TAG, "isNetworkConnected: " + isNetworkConnected());
+        //fetchAllGenresFromNetwork();
+        //genreListLiveData = genreDAO.returnAllGenders();
 
-
-        return genres;
+        return genreListLiveData;
     }
 
-    private void loadGenres() {
+    /**
+     * This method returns a LiveData after a network call.
+     * @param genreListLiveData
+     * @return
+     */
+    private LiveData<List<Genre>> getAllGenres(LiveData<List<Genre>> genreListLiveData) {
+        refreshData();
+        return genreDAO.returnAllGenders();
+    }
+
+    /*private LiveData<List<Genre>> getAllGenres(LiveData<List<Genre>> genreListLiveData) {
+        final MutableLiveData<List<Genre>> data = new MutableLiveData<>();
+
         Call<GenreResponse> call = tmdbRestService.listGenre(API_KEY, LANGUAGE);
         call.enqueue(
                 new Callback<GenreResponse>() {
@@ -54,7 +84,8 @@ public class GenreRepositoryImpl extends BaseRepository implements GenreReposito
                     public void onResponse(Call<GenreResponse> call, Response<GenreResponse> response) {
                         Log.d(TAG, "onResponse");
                         GenreResponse genreResponse = response.body();
-                        new InsertGenreAsyncTask(genreDAO, genreResponse.getGenres()).execute();
+                        data.setValue(genreResponse.getGenres());
+                        //new InsertGenreAsyncTask(genreDAO, genreResponse.getGenres()).execute();
                     }
 
                     @Override
@@ -63,9 +94,27 @@ public class GenreRepositoryImpl extends BaseRepository implements GenreReposito
                         t.printStackTrace();
                     }
                 });
+        return data;
+    }*/
+
+    private void fetchAllGenresFromNetwork(LiveData<List<Genre>> genreListLiveData) {
+
     }
 
-    private static class InsertGenreAsyncTask extends AsyncTask<Void, Void, Void> {
+    private void refreshData() {
+        executor.execute(() -> {
+            Call<GenreResponse> call = tmdbRestService.listGenre(API_KEY, LANGUAGE);
+            try {
+                Response<GenreResponse> response = call.execute();
+                genreDAO.insert(response.body().getGenres());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        });
+    }
+
+    private class InsertGenreAsyncTask extends AsyncTask<Void, Void, Void> {
         private final GenreDAO genreDAO;
         private final List<Genre> genres;
 
@@ -78,6 +127,11 @@ public class GenreRepositoryImpl extends BaseRepository implements GenreReposito
         protected Void doInBackground(final Void... params) {
             genreDAO.insert(genres);
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            mediator.addSource(genreDAO.returnAllGenders(), data -> mediator.setValue(data));
         }
     }
 }

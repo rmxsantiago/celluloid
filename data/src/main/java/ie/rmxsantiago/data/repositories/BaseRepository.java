@@ -1,8 +1,6 @@
 package ie.rmxsantiago.data.repositories;
 
 import android.app.Application;
-import android.content.Context;
-import android.net.ConnectivityManager;
 
 import ie.rmxsantiago.data.database.MoviesDatabase;
 import ie.rmxsantiago.data.remote.tmdb.TmdbRestService;
@@ -20,11 +18,9 @@ public abstract class BaseRepository {
 
     protected MoviesDatabase db;
     protected TmdbRestService tmdbRestService;
-    private Application application;
 
 
     public BaseRepository(Application application) {
-        this.application = application;
         db = MoviesDatabase.getDatabase(application);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -33,11 +29,5 @@ public abstract class BaseRepository {
                 .build();
 
         tmdbRestService = retrofit.create(TmdbRestService.class);
-    }
-
-    protected boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null;
     }
 }

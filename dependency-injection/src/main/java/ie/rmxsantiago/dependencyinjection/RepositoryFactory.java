@@ -11,6 +11,6 @@ import ie.rmxsantiago.domain.repositories.GenreRepository;
  */
 public class RepositoryFactory {
     public static GenreRepository getGenreRepository(Application application){
-        return new GenreRepositoryImpl(application);
+        return new GenreRepositoryImpl(application, null);
     }
 }
