@@ -6,13 +6,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import androidx.test.runner.AndroidJUnit4;
 import ie.rmxsantiago.data.remote.tmdb.TmdbRestService;
 import ie.rmxsantiago.data.utils.WebServiceHelper;
 import ie.rmxsantiago.domain.model.reponses.GenreResponse;
 import ie.rmxsantiago.domain.model.reponses.MoviesByGenreResponse;
+import okhttp3.ConnectionSpec;
 import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
 import okhttp3.mockwebserver.MockWebServer;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -39,7 +42,12 @@ public class TMDBWebServiceTest {
 
         HttpUrl BASE_URL = tmdbWebServer.url("/");
 
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectionSpecs(Arrays.asList(ConnectionSpec.CLEARTEXT))
+                .build();
+
         Retrofit retrofit = new Retrofit.Builder()
+                //.client(client)
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

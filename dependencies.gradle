@@ -42,7 +42,8 @@ ext {
     ]
 
     domainTestDependencies = [
-            junit: "junit:junit:$junit_version"
+            junit: "junit:junit:$junit_version",
+            testrunner: "androidx.test:runner:$testrunner_version"
     ]
 
     dataDependencies = [

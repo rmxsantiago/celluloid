@@ -33,8 +33,7 @@ dependencies {
     implementation project(path: ':data')
 
     def dataTestDependencies = rootProject.ext.dataTestDependencies
-
     implementation dataTestDependencies.junit
-    //androidTestImplementation dataTestDependencies.testrunner
+    androidTestImplementation dataTestDependencies.testrunner
 
 }

@@ -1,7 +1,5 @@
 package ie.rmxsantiago.data.room;
 
-import org.junit.Test;
-
 import ie.rmxsantiago.data.database.daos.MovieGenreDAO;
 import ie.rmxsantiago.domain.model.common.MovieGenre;
 
@@ -16,7 +14,7 @@ class MovieGenreRobot {
         this.movieGenreDAO = movieGenreDAO;
     }
 
-    @Test
+    //@Test
     public void insertMovieGenre(MovieGenre movieGenre) {
         movieGenreDAO.insert(movieGenre);
     }
