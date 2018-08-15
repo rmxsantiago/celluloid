@@ -30,7 +30,7 @@ android:
       - extra-google-m2repository
       - extra-android-m2repository # for design library
       - extra-google-google_play_services
-      - addon-google_apis-google-$ANDROID_API
+      - addon-google_apis-google-$EMULATOR_API
 
    licenses:
       - android-sdk-preview-license-.+
