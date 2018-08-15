@@ -23,7 +23,7 @@ android:
       - tools
       - plataform-tools
       - tools
-      - sys-img-armeabi-v7a-android-28
+      - sys-img-armeabi-v7a-android-25
       - sys-img-armeabi-v7a-google_apis-$EMULATOR_API
       - build-tools-$ANDROID_BUILD_TOOLS
       - android-$ANDROID_API
