@@ -1,6 +1,7 @@
 language: android
 sudo: false
 jdk: oraclejdk8
+bundler_args: --retry 5
 
 before_cache:
    -rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -39,14 +40,13 @@ android:
 
 before_install:
    - chmod +x gradlew
-   #- ./gradlew dependencies || true
+   - ./gradlew dependencies || true
 
 before_script:
     - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi google_apis/armeabi-v7a
     - emulator -avd test -no-audio -no-window &
     - android-wait-for-emulator
     - adb shell input keyevent 82 &
-
 
 script:
    - "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
