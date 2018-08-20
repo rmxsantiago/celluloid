@@ -38,8 +38,8 @@ android:
       - google-gdk-license-.+
 
 before_install:
-   - yes | sdkmanager "platforms;android-28"
    - chmod +x gradlew
+   - yes | sdkmanager "platforms;android-28"
    - ./gradlew dependencies || true
 
 before_script:
