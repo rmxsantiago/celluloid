@@ -13,17 +13,17 @@ cache:
       - $HOME/.android/build-cache
 env:
    global:
-   - ANDROID_API=28
-   - EMULATOR_API=28
-   - ANDROID_BUILD_TOOLS=28.0.2
-   - ADB_INSTALL_TIMEOUT=5 # minutes
+       - ANDROID_API=28
+       - EMULATOR_API=28
+       - ANDROID_BUILD_TOOLS=28.0.2
+       - ADB_INSTALL_TIMEOUT=5 # minutes
 
 android:
    components:
      # - tools
      # - tools
      # - platform-tools
-      #- build-tools-$ANDROID_BUILD_TOOLS
+      - build-tools-$ANDROID_BUILD_TOOLS
      # - sys-img-armeabi-v7a-android-$EMULATOR_API
      # - sys-img-armeabi-v7a-google_apis-$EMULATOR_API
      # - sys-img-x86-android-28
@@ -38,7 +38,7 @@ android:
       - tools
       - build-tools-24.0.2
       - android-25
-      - android-24
+      - android-28
       - sys-img-armeabi-v7a-android-25
       - extra-android-m2repository
    licenses:
