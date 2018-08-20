@@ -39,7 +39,6 @@ android:
       - google-gdk-license-.+
 
 before_install:
-   - yes | sudo sdkmanager --licenses   
    - chmod +x gradlew
    - ./gradlew dependencies || true
 
