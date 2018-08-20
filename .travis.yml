@@ -40,7 +40,7 @@ android:
 
 before_install:
    - chmod +x gradlew
-   - ./gradlew dependencies || true
+   #- ./gradlew dependencies || true
 
 before_script:
     - echo no | android create avd --force -n test -t android-$EMULATOR_API --abi google_apis/armeabi-v7a
