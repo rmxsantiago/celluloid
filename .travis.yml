@@ -38,6 +38,7 @@ android:
       - google-gdk-license-.+
 
 before_install:
+   - yes | sdkmanager "platforms;android-28"
    - chmod +x gradlew
    - ./gradlew dependencies || true
 
