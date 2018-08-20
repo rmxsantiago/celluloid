@@ -4,7 +4,7 @@ ext {
     androidMinSdkVersion = 19
     androidTargetSdkVersion = 28
 
-    buildToolsVersion = '28.0.0'
+    buildToolsVersion = '28.0.2'
 
     java_version = "1.8"
 
