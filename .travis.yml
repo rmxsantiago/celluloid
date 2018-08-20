@@ -22,7 +22,7 @@ env:
 android:
    components:
       - tools
-      - plataform-tools
+      - platform-tools
       - tools
       - build-tools
       - sys-img-armeabi-v7a-android-$EMULATOR_API
