@@ -24,14 +24,13 @@ android:
       - tools
       - plataform-tools
       - tools
+      - build-tools
       - sys-img-armeabi-v7a-android-$EMULATOR_API
       - sys-img-armeabi-v7a-google_apis-$EMULATOR_API
-      - build-tools-$ANDROID_BUILD_TOOLS
       - android-$ANDROID_API
       - extra-google-m2repository
       - extra-android-m2repository # for design library
       - extra-google-google_play_services
-      - addon-google_apis-google-$EMULATOR_API
 
    licenses:
       - android-sdk-preview-license-.+
