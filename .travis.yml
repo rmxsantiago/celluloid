@@ -1,5 +1,5 @@
 language: android
-sudo: false
+sudo: required 
 jdk: oraclejdk8
 bundler_args: --retry 5
 
@@ -38,8 +38,8 @@ android:
       - google-gdk-license-.+
 
 before_install:
+   - yes | sudo sdkmanager --licenses   
    - chmod +x gradlew
-   - yes | sdkmanager "platforms;android-28"
    - ./gradlew dependencies || true
 
 before_script:
