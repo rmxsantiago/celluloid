@@ -15,7 +15,7 @@ env:
    global:
        - ANDROID_API=28
        - EMULATOR_API=28
-       - ANDROID_BUILD_TOOLS=28.0.2
+       - ANDROID_BUILD_TOOLS=27.0.3
        - ADB_INSTALL_TIMEOUT=5 # minutes
 
 android:
@@ -36,7 +36,6 @@ android:
      # - extra
       - platform-tools
       - tools
-      - build-tools-24.0.2
       - android-25
       - android-28
       - sys-img-armeabi-v7a-android-25
@@ -48,6 +47,8 @@ android:
 
 before_install:
    - chmod +x gradlew
+   - mkdir \"$ANDROID_HOME/licenses\" || true"
+   - echo \"d56f5187479451eabf01fb78af6dfcb131a6481e\" > \"$ANDROID_HOME/licenses/android-sdk-license\"
    #- ./gradlew dependencies || true
 
 #before_script:
