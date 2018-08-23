@@ -1,6 +1,7 @@
 # Celluloid 
 
 Celluloid is a client application for the [The Movie Database](https://www.themoviedb.org/) service.
+
 ---
 [![version](https://img.shields.io/badge/version-alpha-ababab.svg)]()
 [![platform](https://img.shields.io/badge/platform-android-green.svg)]()
