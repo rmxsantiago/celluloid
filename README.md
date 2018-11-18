@@ -1,4 +1,6 @@
-# Celluloid 
+### This project is a WIP (work in progress) and it doesn't have a MVP (Minimal Viable Product) yet.
+
+# Celluloid (WIP)
 Celluloid is a client application for the [The Movie Database](https://www.themoviedb.org/) service.
 
 [![version](https://img.shields.io/badge/version-alpha-ababab.svg)](https://github.com/rmxsantiago/celluloid)
