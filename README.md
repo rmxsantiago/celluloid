@@ -1,4 +1,6 @@
-### This project is a WIP (work in progress) and it doesn't have a MVP (Minimal Viable Product) yet.
+```diff
+- This project is a WIP (work in progress) and it doesn't have a MVP (Minimal Viable Product) yet.
+```
 
 # Celluloid (WIP)
 Celluloid is a client application for the [The Movie Database](https://www.themoviedb.org/) service.
